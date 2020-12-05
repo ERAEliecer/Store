@@ -1,0 +1,9 @@
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\bin\Debug\Store.exe.config
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\bin\Debug\Store.exe
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\bin\Debug\Store.pdb
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.csprojAssemblyReference.cache
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.Properties.Resources.resources
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.csproj.GenerateResource.cache
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.csproj.CoreCompileInputs.cache
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.exe
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.pdb
