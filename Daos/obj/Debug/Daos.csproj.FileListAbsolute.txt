@@ -3,3 +3,8 @@ C:\Users\José Armando\Documents\Jey\Premo\Store\Daos\bin\Debug\Daos.pdb
 C:\Users\José Armando\Documents\Jey\Premo\Store\Daos\obj\Debug\Daos.csproj.CoreCompileInputs.cache
 C:\Users\José Armando\Documents\Jey\Premo\Store\Daos\obj\Debug\Daos.dll
 C:\Users\José Armando\Documents\Jey\Premo\Store\Daos\obj\Debug\Daos.pdb
+C:\Users\José Armando\Documents\Jey\Premo\Store\Daos\obj\Debug\Daos.csprojAssemblyReference.cache
+C:\Users\José Armando\Documents\Jey\Premo\Store\Daos\bin\Debug\Models.dll
+C:\Users\José Armando\Documents\Jey\Premo\Store\Daos\bin\Debug\MySql.Data.dll
+C:\Users\José Armando\Documents\Jey\Premo\Store\Daos\bin\Debug\Models.pdb
+C:\Users\José Armando\Documents\Jey\Premo\Store\Daos\obj\Debug\Daos.csproj.CopyComplete
