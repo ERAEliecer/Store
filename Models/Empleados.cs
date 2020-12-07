@@ -9,7 +9,7 @@ namespace Models
     public class Empleados
     {
         public Empleados() { }
-        public Empleados(
+        public Empleados(int no_trabajador,
                          String nombre,
                          String apellido_paterno,
                          String apellido_materno,
@@ -18,7 +18,7 @@ namespace Models
                          bool admin)
         {
 
-            
+            No_Trabajador=no_trabajador;
             Nombre = nombre;
             Apellido_Materno = apellido_materno;
             Apellido_Paterno = apellido_paterno;
