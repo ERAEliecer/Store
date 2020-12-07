@@ -11,14 +11,14 @@ namespace Models
 
         public Sucursales() { }
 
-        public Sucursales(int no_Sucursales, string direccion, string encargado)
+        public Sucursales(int no_Sucursal, string direccion, string encargado)
         {
-            No_Sucursales = no_Sucursales;
+            No_Sucursal = no_Sucursal;
             Direccion = direccion;
             Encargado = encargado;
         }
 
-        public int No_Sucursales { get; set; }
+        public int No_Sucursal { get; set; }
         public String Direccion { get; set; }
         public String Encargado { get; set; }
     }
