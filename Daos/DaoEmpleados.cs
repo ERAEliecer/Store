@@ -201,5 +201,35 @@ namespace Daos
 
 			return done;
 		}
+
+		public bool Delete(int no_trabajador){
+			bool done=false;
+			MySqlConnection conn = Connention.Conn();
+
+			try
+			{
+				String cmdStr="Delete from empleados where no_trabajador=@no_trabajador";
+				MySqlCommand cmd = new MySqlCommand(cmdStr,conn);
+
+				cmd.Parameters.AddWithValue("@no_trabajador",no_trabajador);
+
+				cmd.ExecuteNonQuery();
+
+				done= true;
+
+			}
+			catch (MySqlException ex)
+			{
+				Console.WriteLine(ex.ToString());
+				done=false;
+			}
+			finally
+			{
+				conn.Close();
+				conn.Dispose();
+			}
+
+			return done;
+		}
 	}
 }
