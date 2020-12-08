@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Models;
 using MySql.Data.MySqlClient;
 
@@ -23,7 +22,7 @@ namespace Daos
                 lstSucursales = new List<Sucursales>();
                 while (dr.Read())
                 {
-                    Sucursales objSucursal = new Talleres();
+                    Sucursales objSucursal = new Sucursales();
                     objSucursal.No_Sucursal = int.Parse(dr["no_sucursal"].ToString());
                     objSucursal.Direccion = dr["direccion"].ToString();
                     objSucursal.Encargado = dr["encargado"].ToString();
@@ -53,14 +52,14 @@ namespace Daos
             {
                 String cmdStr="Select * from sucursales where no_sucursal=@no_sucursal";
                 MySqlCommand cmd= new MySqlCommand(cmdStr,conn);
-                cmd.Parameters.AddValueWith("@no_sucursal",no_sucursal);
+                cmd.Parameters.AddWithValue("@no_sucursal",no_sucursal);
                 MySqlDataReader dr= cmd.ExecuteReader();
 
                 while(dr.Read())
                 {
                     objSucursal= new Sucursales();
                     objSucursal.No_Sucursal=int.Parse(dr["no_sucursal"].ToString());
-                    objSucursal.Nombre=dr["nombre"].ToString();
+                    objSucursal.Direccion=dr["direccion"].ToString();
                     objSucursal.Encargado=dr["encargado"].ToString();
                 }
             }
@@ -83,14 +82,14 @@ namespace Daos
 
             try
             {
-                String cmdStr=@"Insert into sucursales(nombre,encargado) 
-                 values (@nombre,@encargado)";
+                String cmdStr= @"Insert into sucursales(direccion,encargado) 
+                 values (@direccion,@encargado)";
                 MySqlCommand cmd= new MySqlCommand(cmdStr,conn);
-                cmd.Parameters.AddValueWith("@nombre",objSucursal.Nombre);
-                cmd.Parameters.AddValueWith("@encargado",objSucursal.Encargado);
+                cmd.Parameters.AddWithValue("@direccion", objSucursal.Direccion);
+                cmd.Parameters.AddWithValue("@encargado",objSucursal.Encargado);
 
                 cmd.ExecuteNonQuery();
-                done=cmd.LastInsertedId();
+                done = (int)cmd.LastInsertedId;
 
             }
             catch (MySqlException ex)
@@ -111,12 +110,12 @@ namespace Daos
             MySqlConnection conn = Connention.Conn();
             try
             {
-                String cmdStr=@"Update sucursales set 
-                nombre=@nombre,
+                String cmdStr= @"Update sucursales set 
+                direccion=@direccion,
                 encargado=@encargado where no_sucursal=@no_sucursal";
                 MySqlCommand cmd=new MySqlCommand(cmdStr,conn);
-                cmd.Parameters.AddValueWith("@nombre",objSucursal.Nombre);
-                cmd.Parameters.AddValueWith("@encargado",objSucursal.Encargado);
+                cmd.Parameters.AddWithValue("@direccion", objSucursal.Direccion);
+                cmd.Parameters.AddWithValue("@encargado",objSucursal.Encargado);
 
                 cmd.ExecuteNonQuery();
 
@@ -143,7 +142,7 @@ namespace Daos
             {
                 String cmdStr="Delete from sucursales where no_sucursal=@no_sucursal";
                 MySqlCommand cmd = new MySqlCommand(cmdStr,conn);
-                cmd.Parameters.AddValueWith("@no_sucursal",no_sucursal);
+                cmd.Parameters.AddWithValue("@no_sucursal",no_sucursal);
 
                 cmd.ExecuteNonQuery();
                 done=true;
@@ -156,6 +155,8 @@ namespace Daos
                 conn.Close();
                 conn.Dispose();
             }
+
+            return done;
         }
     }
 }

@@ -46,6 +46,9 @@
   <ItemGroup>
     <Compile Include="Connention.cs" />
     <Compile Include="DaoEmpleados.cs" />
+    <Compile Include="DaoSucursales.cs" />
+    <Compile Include="DaoSueteres.cs" />
+    <Compile Include="DaoTalleres.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

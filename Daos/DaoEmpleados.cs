@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Models;
 using MySql.Data.MySqlClient;
 
@@ -89,19 +88,25 @@ namespace Daos
 			try
 			{
 				String cmdStr="Select * from empleados";
-				MySqlCommand cmd= new MySqlCommand(conn,cmdStr);
+				MySqlCommand cmd= new MySqlCommand(cmdStr,conn);
 				MySqlDataReader dr=cmd.ExecuteReader();
 
 				lstEmpleados=new List<Empleados>();
 
 				while(dr.Read()){
 					Empleados objEmpleado=new Empleados();
-					objEmpleado.No_Trabajador=int.Parse(dr['no_trabajador'].ToString());
+					objEmpleado.No_Trabajador=int.Parse(dr["no_trabajador"].ToString());
 					objEmpleado.Nombre=dr["nombre"].ToString();
 					objEmpleado.Apellido_Paterno=dr["apellido_paterno"].ToString();
 					objEmpleado.Apellido_Materno=dr["apellido_materno"].ToString();
 					objEmpleado.Telefono=dr["telefono"].ToString();
-					objEmpleado.Admin=int.Parse(dr["admin"].ToString());
+					if (int.Parse(dr["admin"].ToString()) == 1) {
+						objEmpleado.Admin = true;
+					}
+					else
+					{
+						objEmpleado.Admin = false;
+					}
 					lstEmpleados.Add(objEmpleado);
 				}
 			}
@@ -127,20 +132,26 @@ namespace Daos
 			try
 			{
 				String cmdStr="Select * from empleados where no_trabajador=@no_trabajador";
-				MySqlCommand cmd= new MySqlCommand(conn,cmdStr);
-				cmd.Parameters.AddWithValue("@no_trabajador",no_trabajador)
+				MySqlCommand cmd= new MySqlCommand(cmdStr,conn);
+				cmd.Parameters.AddWithValue("@no_trabajador", no_trabajador);
 				MySqlDataReader dr=cmd.ExecuteReader();
 
-				lstEmpleados=new List<Empleados>();
 
 				while(dr.Read()){
 					objEmpleado=new Empleados();
-					objEmpleado.No_Trabajador=int.Parse(dr['no_trabajador'].ToString());
+					objEmpleado.No_Trabajador=int.Parse(dr["no_trabajador"].ToString());
 					objEmpleado.Nombre=dr["nombre"].ToString();
 					objEmpleado.Apellido_Paterno=dr["apellido_paterno"].ToString();
 					objEmpleado.Apellido_Materno=dr["apellido_materno"].ToString();
 					objEmpleado.Telefono=dr["telefono"].ToString();
-					objEmpleado.Admin=int.Parse(dr["admin"].ToString());
+					if (int.Parse(dr["admin"].ToString()) == 1)
+					{
+						objEmpleado.Admin = true;
+					}
+					else
+					{
+						objEmpleado.Admin = false;
+					}
 				}
 			}
 			catch(MySqlException ex)
