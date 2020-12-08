@@ -12,9 +12,9 @@ namespace Models
         {
         }
 
-        public Orden(int orden_Id, int no_Trabajador, DateTime fecha_Orden)
+        public Orden(int no_Trabajador, DateTime fecha_Orden)
         {
-            Orden_Id = orden_Id;
+            
             No_Trabajador = no_Trabajador;
             Fecha_Orden = fecha_Orden;
         }

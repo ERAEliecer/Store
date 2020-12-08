@@ -30,5 +30,9 @@ namespace Models
         public float Talla { get; set; }
         public int Unidades { get; set; }
         public float Precio { get; set; }
+
+        public void ActualizarUnidades(int cantidad){
+            Unidades-=cantidad;
+        }
     }
 }

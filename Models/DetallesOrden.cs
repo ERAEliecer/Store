@@ -12,9 +12,8 @@ namespace Models
         {
         }
 
-        public DetallesOrden(int orden_Id, int id_Sueter, float precio, int cantidad)
+        public DetallesOrden(int id_Sueter, float precio, int cantidad)
         {
-            Orden_Id = orden_Id;
             Id_Sueter = id_Sueter;
             Precio = precio;
             Cantidad = cantidad;
