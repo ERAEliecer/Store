@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
+using Models;
 
 namespace Daos
 {
@@ -17,11 +19,11 @@ namespace Daos
             {
                 String cmdStr = @"Insert into detalles_orden(orden_id,id_sueter,precio,cantidad)  
                     values(@orden_id,@id_sueter,@precio,@cantidad)";
-                MySqlCommand cmd = new MySqlCommand(conn, cmdStr);
-                cmd.AddWithValue("@orden_id", orden_id);
-                cmd.AddWithValue("@id_sueter", objDetallesOrden.Id_Sueter);
-                cmd.AddWithValue("@precio", objDetallesOrden.Precio);
-                cmd.AddWithValue("@cantidad", objDetallesOrden.Cantidad);
+                MySqlCommand cmd = new MySqlCommand( cmdStr,conn);
+                cmd.Parameters.AddWithValue("@orden_id", orden_id);
+                cmd.Parameters.AddWithValue("@id_sueter", objDetallesOrden.Id_Sueter);
+                cmd.Parameters.AddWithValue("@precio", objDetallesOrden.Precio);
+                cmd.Parameters.AddWithValue("@cantidad", objDetallesOrden.Cantidad);
                 
                 cmd.ExecuteNonQuery();
 

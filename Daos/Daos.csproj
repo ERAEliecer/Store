@@ -45,11 +45,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connention.cs" />
+    <Compile Include="DaoDetallesOrden.cs" />
     <Compile Include="DaoEmpleados.cs" />
+    <Compile Include="DaoEmpleadoSucursal.cs" />
+    <Compile Include="DaoEmpleadoTaller.cs" />
+    <Compile Include="DaoOrden.cs" />
     <Compile Include="DaoSucursales.cs" />
     <Compile Include="DaoSueteres.cs" />
     <Compile Include="DaoTalleres.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transacciones.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

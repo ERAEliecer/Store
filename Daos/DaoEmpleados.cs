@@ -46,40 +46,52 @@ namespace Daos
 			return done;
 		}
 
-		public bool Login(String nombre,String password)
-        {
-			Empleados empleado = new Empleados();
-			bool login = false;
+		public Empleados Login(String nombre, String password)
+		{
 			MySqlConnection conn = Connention.Conn();
+			Empleados objEmpleado = null;
 
-            try
-            {
-				String cdmStr = " select nombre from empleados where nombre = @nombre and password = sha2(@password, 256)";
-				MySqlCommand cmd = new MySqlCommand(cdmStr, conn);
-				cmd.Parameters.AddWithValue("@password", password);
+			try
+			{
+				String cmdStr = "Select * from empleados where nombre=@nombre and password=sha2(@password,256)";
+				MySqlCommand cmd = new MySqlCommand(cmdStr, conn);
 				cmd.Parameters.AddWithValue("@nombre", nombre);
-
-
+				cmd.Parameters.AddWithValue("@password", password);
 				MySqlDataReader dr = cmd.ExecuteReader();
 
-				login = dr.HasRows;
 
-
+				while (dr.Read())
+				{
+					objEmpleado = new Empleados();
+					objEmpleado.No_Trabajador = int.Parse(dr["no_trabajador"].ToString());
+					objEmpleado.Nombre = dr["nombre"].ToString();
+					objEmpleado.Apellido_Paterno = dr["apellido_paterno"].ToString();
+					objEmpleado.Apellido_Materno = dr["apellido_materno"].ToString();
+					objEmpleado.Telefono = dr["telefono"].ToString();
+					if (int.Parse(dr["admin"].ToString()) == 1)
+					{
+						objEmpleado.Admin = true;
+					}
+					else
+					{
+						objEmpleado.Admin = false;
+					}
+				}
 			}
 			catch (MySqlException ex)
-            {
+			{
+				objEmpleado = null;
 				Console.WriteLine(ex.ToString());
-				login = false;
-            }
-            finally
-            {
+			}
+			finally
+			{
 				conn.Close();
 				conn.Dispose();
-            }
+			}
 
-			return login;
+			return objEmpleado;
 
-        }
+		}
 
 		public List<Empleados> Select(){
 			MySqlConnection conn=Connention.Conn();
@@ -176,13 +188,13 @@ namespace Daos
 
 			try
 			{
-				String cmdStr = @"UPDATE empleados SET 
-						nombre=@nombre,
-						apellido_paterno=@apellido_paterno,
-						apellido_materno=@apellido_materno,
-						admin=@admin,
-						password=sha2(@password,512),
-						telefono=@telefono where no_trabajador=@no_trabajador";
+				String cmdStr = "UPDATE empleados SET "+
+						"nombre=@nombre,"+
+						"apellido_paterno=@apellido_paterno,"+
+						"apellido_materno=@apellido_materno," +
+						"admin=@admin," +
+						"password=sha2(@password,256)," +
+						"telefono=@telefono where no_trabajador=@no_trabajador";
 
 				MySqlCommand cmd = new MySqlCommand(cmdStr, conn);
 

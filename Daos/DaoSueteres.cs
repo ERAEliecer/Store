@@ -60,7 +60,7 @@ namespace Daos
                 precio=@precio,
                 tipo=@tipo where id_sueter=@id_sueter";
 
-                MySqlCommand cmd=new MySqlCommand(conn,cmdStr);
+                MySqlCommand cmd=new MySqlCommand(cmdStr,conn);
                 cmd.Parameters.AddWithValue("@no_sucursal",objSueter.No_Sucursal);
                 cmd.Parameters.AddWithValue("@no_taller",objSueter.No_Taller);
                 cmd.Parameters.AddWithValue("@talla",objSueter.Talla);
@@ -92,7 +92,7 @@ namespace Daos
             try
             {
                 String cmdStr="Select * from sueter";
-                MySqlCommand cmd=new MySqlCommand(conn,cmdStr);
+                MySqlCommand cmd=new MySqlCommand(cmdStr,conn);
                 MySqlDataReader dr = cmd.ExecuteReader();
 
                 lstSueteres= new List<Sueter>();
@@ -103,8 +103,10 @@ namespace Daos
                     objSueter.No_Sucursal=int.Parse(dr["no_sucursal"].ToString());
                     objSueter.No_Taller=int.Parse(dr["no_taller"].ToString());
                     objSueter.Unidades=int.Parse(dr["unidades"].ToString());
-                    objSueter.Tallas=Float.Parse(dr["tallas"].ToString());
-                    objSueter.Precio=Float.Parse(dr["precio"].ToString());
+                    objSueter.Talla=float.Parse(dr["talla"].ToString());
+                    objSueter.Tipo = dr["tipo"].ToString();
+
+                    objSueter.Precio=float.Parse(dr["precio"].ToString());
 
                     lstSueteres.Add(objSueter);
                 }
@@ -128,7 +130,7 @@ namespace Daos
             try
             {
                 String cmdStr="Select * from sueter where id_sueter=@id_sueter";
-                MySqlCommand cmd=new MySqlCommand(conn,cmdStr);
+                MySqlCommand cmd=new MySqlCommand(cmdStr,conn);
                 cmd.Parameters.AddWithValue("@id_sueter",id_sueter);
                 MySqlDataReader dr = cmd.ExecuteReader();
 
@@ -139,8 +141,9 @@ namespace Daos
                     objSueter.No_Sucursal=int.Parse(dr["no_sucursal"].ToString());
                     objSueter.No_Taller=int.Parse(dr["no_taller"].ToString());
                     objSueter.Unidades=int.Parse(dr["unidades"].ToString());
-                    objSueter.Tallas=Float.Parse(dr["tallas"].ToString());
-                    objSueter.Precio=Float.Parse(dr["precio"].ToString());
+                    objSueter.Talla=float.Parse(dr["talla"].ToString());
+                    objSueter.Tipo = dr["tipo"].ToString();
+                    objSueter.Precio=float.Parse(dr["precio"].ToString());
 
                 }
             }
@@ -163,7 +166,7 @@ namespace Daos
             try
             {
                 String cmdStr="Delete from sueter where id_sueter=@id_sueter";
-                MySqlCommand cmd= new MySqlCommand(conn,cmdStr);
+                MySqlCommand cmd= new MySqlCommand(cmdStr,conn);
                 cmd.Parameters.AddWithValue("@id_sueter",id_sueter);
                 cmd.ExecuteNonQuery();
                 done=true;

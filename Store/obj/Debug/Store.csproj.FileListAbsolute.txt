@@ -1,5 +1,4 @@
 C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.csprojAssemblyReference.cache
-C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.Form1.resources
 C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.Properties.Resources.resources
 C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.csproj.GenerateResource.cache
 C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.csproj.CoreCompileInputs.cache
@@ -14,3 +13,8 @@ C:\Users\José Armando\Documents\Jey\Premo\Store\Store\bin\Debug\Models.pdb
 C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.csproj.CopyComplete
 C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.exe
 C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.pdb
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.FrmLogin.resources
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.FrmVentas.resources
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.FrmAdmin.resources
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.FrmListarEmpleados.resources
+C:\Users\José Armando\Documents\Jey\Premo\Store\Store\obj\Debug\Store.FrmListarSueteres.resources

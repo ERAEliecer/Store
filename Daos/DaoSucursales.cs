@@ -116,6 +116,7 @@ namespace Daos
                 MySqlCommand cmd=new MySqlCommand(cmdStr,conn);
                 cmd.Parameters.AddWithValue("@direccion", objSucursal.Direccion);
                 cmd.Parameters.AddWithValue("@encargado",objSucursal.Encargado);
+                cmd.Parameters.AddWithValue("@no_sucursal",objSucursal.No_Sucursal);
 
                 cmd.ExecuteNonQuery();
 

@@ -3,3 +3,4 @@ C:\Users\José Armando\Documents\Jey\Premo\Store\Models\bin\Debug\Models.pdb
 C:\Users\José Armando\Documents\Jey\Premo\Store\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 C:\Users\José Armando\Documents\Jey\Premo\Store\Models\obj\Debug\Models.dll
 C:\Users\José Armando\Documents\Jey\Premo\Store\Models\obj\Debug\Models.pdb
+C:\Users\José Armando\Documents\Jey\Premo\Store\Models\obj\Debug\Models.csprojAssemblyReference.cache

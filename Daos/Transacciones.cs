@@ -20,15 +20,15 @@ namespace Daos
             {
                 tr=conn.BeginTransaction();
                 DaoOrden objDaoOrden=new DaoOrden();
-                order_id=objDaoOrden.Insert(objOrden);
+                orden_id=objDaoOrden.Insert(objOrden);
 
                 foreach (DetallesOrden objDetalleOrden in lstDetallesOrden)
                 {
                     DaoDetallesOrden objDaoDetallesOrden = new DaoDetallesOrden();
-                    objDetalleOrden.Insert(objDetalleOrden,orden_id);
+                    objDaoDetallesOrden.Insert(objDetalleOrden,orden_id);
 
                     DaoSueteres objDaoSueteres= new DaoSueteres();
-                    Sueter objSueter=objDaoSueteres.Select(objDaoSueteres.Id_Sueter);
+                    Sueter objSueter=objDaoSueteres.Select(objDetalleOrden.Id_Sueter);
                     objSueter.ActualizarUnidades(objDetalleOrden.Cantidad);
                     objDaoSueteres.Update(objSueter);
                 }

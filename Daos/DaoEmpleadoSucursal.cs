@@ -18,7 +18,7 @@ namespace Daos
             {
                 String cmdStr=@"Insert into empleado_sucursal (no_trabajador,no_sucursal) 
                 values (@no_trabajador,@no_sucursal)";
-                MySqlCommand cmd= new MySqlCommand(conn,cmdStr);
+                MySqlCommand cmd= new MySqlCommand(cmdStr,conn);
                 cmd.Parameters.AddWithValue("@no_trabajador",objEmpleadoSucursal.No_Trabajador);
                 cmd.Parameters.AddWithValue("@no_sucursal",objEmpleadoSucursal.No_Sucursal);
 
@@ -51,7 +51,7 @@ namespace Daos
                 no_trabajador=@no_trabajador,
                 no_sucursal=@no_sucursal where no_trabajador=@no_trabajador";
 
-                MySqlCommand cmd= new MySqlCommand(conn,cmdStr);
+                MySqlCommand cmd= new MySqlCommand(cmdStr,conn);
                 cmd.Parameters.AddWithValue("@no_trabajador",objEmpleadoSucursal.No_Trabajador);
                 cmd.Parameters.AddWithValue("@no_sucursal",objEmpleadoSucursal.No_Sucursal);
 
@@ -82,7 +82,7 @@ namespace Daos
             {
                 String cmdStr=@"Delete from empleado_sucursal where no_trabajador=@no_trabajador";
 
-                MySqlCommand cmd= new MySqlCommand(conn,cmdStr);
+                MySqlCommand cmd= new MySqlCommand(cmdStr,conn);
                 cmd.Parameters.AddWithValue("@no_trabajador",no_trabajador);
 
                 cmd.ExecuteNonQuery();
@@ -102,6 +102,41 @@ namespace Daos
             }
 
             return done;
+        }
+
+        public EmpleadoSucursal Select(int no_trabajador) {
+            EmpleadoSucursal empleado_sucursal = null;
+
+            MySqlConnection conn = Connention.Conn();
+
+			try
+			{
+                String cmdStr = "Select * from empleado_sucursal where no_trabajador=@no_trabajador";
+                MySqlCommand cmd = new MySqlCommand(cmdStr, conn);
+                cmd.Parameters.AddWithValue("@no_trabajador", no_trabajador);
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+				while (dr.Read())
+				{
+                    empleado_sucursal = new EmpleadoSucursal();
+                    empleado_sucursal.No_Sucursal = int.Parse(dr["no_sucursal"].ToString());
+                    empleado_sucursal.No_Trabajador= int.Parse(dr["no_trabajador"].ToString());
+
+                }
+            }
+			catch (MySqlException ex)
+			{
+                Console.WriteLine(ex.ToString());
+                empleado_sucursal = null;
+            }
+			finally
+			{
+                conn.Close();
+                conn.Dispose();
+			}
+
+            return empleado_sucursal;
         }
 
     }

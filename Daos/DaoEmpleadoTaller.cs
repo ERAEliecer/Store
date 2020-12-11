@@ -16,9 +16,9 @@ namespace Daos
 
             try
             {
-                String cmdStr=@"Insert into empleado_taller (no_trabajador,no_taller) 
-                values (@no_trabajador,@no_taller)";
-                MySqlCommand cmd= new MySqlCommand(conn,cmdStr);
+                String cmdStr="Insert into empleado_taller (no_trabajador,no_taller)"
+                +" values (@no_trabajador,@no_taller)";
+                MySqlCommand cmd= new MySqlCommand(cmdStr,conn);
                 cmd.Parameters.AddWithValue("@no_trabajador",objEmpleadoTaller.No_Trabajador);
                 cmd.Parameters.AddWithValue("@no_taller",objEmpleadoTaller.No_Taller);
 
@@ -51,9 +51,9 @@ namespace Daos
                 no_trabajador=@no_trabajador,
                 no_taller=@no_taller where no_trabajador=@no_trabajador";
 
-                MySqlCommand cmd= new MySqlCommand(conn,cmdStr);
+                MySqlCommand cmd= new MySqlCommand(cmdStr, conn);
                 cmd.Parameters.AddWithValue("@no_trabajador",objEmpleadoTaller.No_Trabajador);
-                cmd.Parameters.AddWithValue("@no_sucursal",objEmpleadoTaller.No_Taller);
+                cmd.Parameters.AddWithValue("@no_taller",objEmpleadoTaller.No_Taller);
 
                 cmd.ExecuteNonQuery();
                 done=true;
@@ -82,7 +82,7 @@ namespace Daos
             {
                 String cmdStr=@"Delete from empleado_taller where no_trabajador=@no_trabajador";
 
-                MySqlCommand cmd= new MySqlCommand(conn,cmdStr);
+                MySqlCommand cmd= new MySqlCommand(cmdStr, conn);
                 cmd.Parameters.AddWithValue("@no_trabajador",no_trabajador);
 
                 cmd.ExecuteNonQuery();
@@ -102,6 +102,42 @@ namespace Daos
             }
 
             return done;
+        }
+
+        public EmpleadoTaller Select(int no_trabajador)
+        {
+            EmpleadoTaller empleado_taller = null;
+
+            MySqlConnection conn = Connention.Conn();
+
+            try
+            {
+                String cmdStr = "Select * from empleado_taller where no_trabajador=@no_trabajador";
+                MySqlCommand cmd = new MySqlCommand(cmdStr, conn);
+                cmd.Parameters.AddWithValue("@no_trabajador", no_trabajador);
+
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    empleado_taller = new EmpleadoTaller();
+                    empleado_taller.No_Taller = int.Parse(dr["no_taller"].ToString());
+                    empleado_taller.No_Trabajador = int.Parse(dr["no_trabajador"].ToString());
+
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                empleado_taller = null;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+
+            return empleado_taller;
         }
 
     }
